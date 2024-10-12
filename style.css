@@ -1,0 +1,90 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+.background {
+    background: url('images/earth.jpg') no-repeat center center/cover;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    padding: 20px;
+}
+
+
+header {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+main {
+    margin: 40px auto;
+    max-width: 800px;
+    text-align: left;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+
+.button {
+    background-color: #4caf50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #2e7d32;
+}
+
+
+.content {
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	background: url('images/milkyway.jpg') no-repeat center center/cover;
+	color: white;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+	color: black;
+}
+
+ul li {
+    background-color: #e0f7fa;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+    .background {
+        padding: 10px;
+    }
+    header, footer {
+        padding: 20px;
+    }
+    main {
+        margin: 20px auto;
+        width: 90%;
+    }
+}
