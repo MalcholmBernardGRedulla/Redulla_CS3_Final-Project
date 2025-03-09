@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Quiz Container */
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.9);
+            width: 80%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .quiz-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #0d47a1;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quiz-options button {
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .quiz-options button:hover {
+            background: #0d47a1;
+            transform: scale(1.05);
+        }
+		
+		.quiz-score {
+			font-size: 1.8rem;
+			font-weight: bold;
+			color: #0d47a1;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+
+		.quiz-result {
+			font-size: 1.3rem;
+			font-weight: bold;
+			color: #333;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+
+        #next-btn, #retry-btn {
+            display: none;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #ffcc00;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #next-btn:hover, #retry-btn:hover {
+            background: #ffaa00;
+        }
+    </style>
+</head>
+<body>
+
+    <header>SDG Knowledge Quiz</header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sdg13.html">SDG 13</a></li>
+            <li><a href="sdg14_15.html">SDG 14 & 15</a></li>
+            <li><a href="quiz.html" class="active">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="section">
+            <h2 class="quiz-intro">Answer the questions below to see how much you know about SDG 13, 14, and 15!</h2>
+        </section>
+
+        <section class="section">
+            <div class="quiz-container">
+                <h2 class="quiz-question">Loading...</h2>
+                <div class="quiz-options"></div>
+                <button id="next-btn">Next Question</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>&copy; 2025 SDG Awareness | Quiz</footer>
+
+    <script>
+        // Quiz Questions
+        let questions = [
+            {
+                question: "What is the main goal of SDG 13 (Climate Action)?",
+                options: [
+                    "Reduce ocean pollution",
+                    "Ensure access to clean water",
+                    "Take urgent action to combat climate change",
+                    "Improve education quality"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which of the following contributes most to climate change?",
+                options: [
+                    "Deforestation",
+                    "Plastic pollution",
+                    "Nuclear energy",
+                    "Wind turbines"
+                ],
+                answer: 0
+            },
+            {
+                question: "How much of Earth's surface is covered by oceans (SDG 14)?",
+                options: [
+                    "50%",
+                    "60%",
+                    "70%",
+                    "80%"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is a major threat to marine life?",
+                options: [
+                    "Solar energy",
+                    "Plastic pollution",
+                    "Space travel",
+                    "Cloud computing"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which of these is NOT a key goal of SDG 15 (Life on Land)?",
+                options: [
+                    "Protecting forests",
+                    "Preventing biodiversity loss",
+                    "Sustainable land use",
+                    "Expanding space exploration"
+                ],
+                answer: 3
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function shuffleQuestions() {
+            questions = questions.sort(() => Math.random() - 0.5);
+        }
+
+        function startQuiz() {
+            shuffleQuestions();
+            currentQuestionIndex = 0;
+            score = 0;
+            document.querySelector(".quiz-question").textContent = "Loading...";
+            document.querySelector(".quiz-options").innerHTML = "";
+            showQuestion();
+        }
+
+        function showQuestion() {
+            let currentQuestion = questions[currentQuestionIndex];
+            document.querySelector(".quiz-question").textContent = currentQuestion.question;
+
+            document.querySelector(".quiz-options").innerHTML = "";
+            currentQuestion.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.textContent = option;
+                button.classList.add("btn");
+                button.addEventListener("click", () => selectAnswer(index));
+                document.querySelector(".quiz-options").appendChild(button);
+            });
+
+            document.getElementById("next-btn").style.display = "none";
+        }
+
+        function selectAnswer(selectedIndex) {
+            let correctIndex = questions[currentQuestionIndex].answer;
+            let buttons = document.querySelectorAll(".quiz-options .btn");
+
+            buttons.forEach((button, index) => {
+                if (index === correctIndex) {
+                    button.style.backgroundColor = "#00c853"; // Green for correct
+                }
+                if (index === selectedIndex && index !== correctIndex) {
+                    button.style.backgroundColor = "#d32f2f"; // Red for incorrect
+                }
+                button.disabled = true;
+            });
+
+            if (selectedIndex === correctIndex) {
+                score++;
+            }
+
+            document.getElementById("next-btn").style.display = "block";
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            } else {
+                showScore();
+            }
+        }
+
+        function showScore() {
+    document.querySelector(".quiz-container").innerHTML = `
+        <h2 class="quiz-score">Your Score: ${score} / ${questions.length}</h2>
+        <p class="quiz-result">${score >= 3 ? "Great job! You know a lot about the SDGs!" : "Keep learning and try again!"}</p>
+        <button id="retry-btn" class="btn">Retry Quiz</button>
+    `;
+
+		document.getElementById("retry-btn").addEventListener("click", startQuiz);
+		}
+
+        document.addEventListener("DOMContentLoaded", function () {
+            startQuiz();
+            document.getElementById("next-btn").addEventListener("click", nextQuestion);
+        });
+    </script>
+
+</body>
+</html>
