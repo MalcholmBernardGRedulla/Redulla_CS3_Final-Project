@@ -1,7 +1,6 @@
-/* Google Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
-/* General Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +9,7 @@
     scroll-behavior: smooth;
 }
 
-/* Body Styling */
+
 body {
     background: linear-gradient(135deg, #e3f2fd, #90caf9);
     color: #333;
@@ -18,7 +17,7 @@ body {
     padding: 20px;
 }
 
-/* Header Styling */
+
 header {
     text-align: center;
     padding: 2rem;
@@ -33,7 +32,7 @@ header {
     animation: fadeSlideIn 1s ease-in-out forwards;
 }
 
-/* Sticky Navigation Bar (Hotbar) */
+
 nav {
     position: sticky;
     top: 0;
@@ -68,7 +67,7 @@ nav ul li a:hover {
     color: #1976d2;
 }
 
-/* Main Content */
+
 main {
     width: 85%;
     max-width: 900px;
@@ -79,7 +78,7 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Sections */
+
 .section {
     padding: 20px;
     margin-bottom: 30px;
@@ -91,14 +90,14 @@ main {
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
 
-/* Headings */
+
 h1, h2, h3 {
     font-weight: bold;
     color: #0d47a1;
     text-align: center;
 }
 
-/* Paragraphs & Lists */
+
 p, ul li {
     font-size: 1.1rem;
     margin-bottom: 15px;
@@ -109,7 +108,7 @@ p, ul li {
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
 
-/* Buttons */
+
 .btn {
     display: inline-block;
     background: #1565c0;
@@ -125,7 +124,7 @@ p, ul li {
     background: #0d47a1;
 }
 
-/* Footer */
+
 footer {
     text-align: center;
     background: #1976d2;
@@ -135,7 +134,7 @@ footer {
     border-radius: 10px;
 }
 
-/* Scroll Animations */
+
 @media (prefers-reduced-motion: no-preference) {
     .section:nth-of-type(odd),
     p:nth-of-type(odd),
@@ -150,7 +149,7 @@ footer {
     }
 }
 
-/* Keyframe Animations */
+
 @keyframes fadeSlideIn {
     from {
         opacity: 0;
