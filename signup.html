@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sign Up</title>
+  <title>Sign Up - SDG Hub</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: white;
       color: #333;
     }
@@ -14,22 +14,28 @@
     .navbar {
       background-color: #004d40;
       color: white;
-      padding: 16px 32px;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .navbar h1 {
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
       margin: 0;
-      font-size: 22px;
+      user-select: none;
     }
 
     .nav-links a {
       color: white;
-      margin-left: 24px;
       text-decoration: none;
+      margin-left: 20px;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
@@ -37,84 +43,153 @@
     }
 
     .container {
-      max-width: 480px;
-      margin: 80px auto;
+      max-width: 600px;
+      margin: 60px auto 80px;
       padding: 30px;
       background: #f4f4f4;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    h2 {
+    h1.site-name {
       text-align: center;
-      color: #143935;
+      color: #004d40;
+      margin-bottom: 5px;
+      user-select: none;
     }
 
-    label {
+    p.tagline {
+      text-align: center;
+      color: #444;
+      font-style: italic;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+
+    form label {
       display: block;
       margin-top: 15px;
-      font-weight: bold;
+      font-weight: 600;
+      color: #004d40;
     }
 
-    input {
+    label span.required {
+      color: red;
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    textarea {
       width: 100%;
       padding: 10px;
       margin-top: 6px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      font-size: 1em;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    .radio-group {
+      margin-top: 8px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      color: #333;
+      margin-top: 0;
     }
 
     button {
+      margin-top: 30px;
       width: 100%;
-      padding: 12px;
-      margin-top: 20px;
+      padding: 14px;
       background-color: #004d40;
       color: white;
       border: none;
-      border-radius: 6px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 1.1em;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #296058;
+      background-color: #236c60;
     }
   </style>
 </head>
 <body>
   <header class="navbar">
-    <h1>SDG Hub</h1>
+    <h1 class="logo">SDG Hub</h1>
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
+      <a href="importance.html">Importance</a>
+      <a href="challenges.html">Challenges</a>
+      <a href="actions.html">Actions</a>
+      <a href="resources.html">Resources</a>
+      <a href="quiz.html">Quiz</a>
       <a href="signup.html">Sign Up</a>
     </nav>
   </header>
 
   <div class="container">
-    <h2>Create Account</h2>
+    <h1 class="site-name">SDG Hub</h1>
+    <p class="tagline">Join us in advocating for climate action, life below water, and life on land!</p>
+
     <form id="signupForm">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" required />
+      <label for="firstName">First Name<span class="required">*</span></label>
+      <input type="text" id="firstName" name="firstName" required />
 
-      <label for="email">Email</label>
-      <input type="email" id="email" required />
+      <label for="lastName">Last Name<span class="required">*</span></label>
+      <input type="text" id="lastName" name="lastName" required />
 
-      <label for="password">Password</label>
-      <input type="password" id="password" required minlength="6" />
+      <label>Sex<span class="required">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="sex" value="Male" required /> Male</label>
+        <label><input type="radio" name="sex" value="Female" /> Female</label>
+        <label><input type="radio" name="sex" value="Prefer not to say" /> Prefer not to say</label>
+      </div>
 
-      <button type="submit">Register</button>
+      <label for="email">Email Address<span class="required">*</span></label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password<span class="required">*</span></label>
+      <input type="password" id="password" name="password" required minlength="6" />
+
+      <label for="contactNumber">Contact Number (optional)</label>
+      <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9+\-\s]*" placeholder="+123 456 7890" />
+
+      <label for="supportReason">Why you’re supporting our campaign<span class="required">*</span></label>
+      <textarea id="supportReason" name="supportReason" required></textarea>
+
+      <button type="submit">Join Now</button>
     </form>
   </div>
 
   <script>
-    document.getElementById('signupForm').addEventListener('submit', function (e) {
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
 
-      localStorage.setItem('signupData', JSON.stringify({ name, email, password }));
+      const formData = {
+        firstName: this.firstName.value.trim(),
+        lastName: this.lastName.value.trim(),
+        sex: this.sex.value,
+        email: this.email.value.trim(),
+        password: this.password.value,
+        contactNumber: this.contactNumber.value.trim(),
+        supportReason: this.supportReason.value.trim()
+      };
+
+      localStorage.setItem('signupData', JSON.stringify(formData));
       window.location.href = 'profile.html';
     });
   </script>
