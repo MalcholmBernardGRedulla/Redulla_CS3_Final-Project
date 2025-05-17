@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Profile</title>
+  <title>Your Profile - SDG Hub</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: white;
       color: #333;
     }
@@ -14,22 +14,28 @@
     .navbar {
       background-color: #004d40;
       color: white;
-      padding: 16px 32px;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .navbar h1 {
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
       margin: 0;
-      font-size: 22px;
+      user-select: none;
     }
 
     .nav-links a {
       color: white;
-      margin-left: 24px;
       text-decoration: none;
+      margin-left: 20px;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
@@ -37,52 +43,90 @@
     }
 
     .container {
-      max-width: 500px;
-      margin: 80px auto;
+      max-width: 600px;
+      margin: 60px auto 80px;
       padding: 30px;
       background: #f4f4f4;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    h2 {
       text-align: center;
-      color: #143935;
     }
 
-    p {
+    h1 {
+      color: #004d40;
+      margin-bottom: 10px;
+    }
+
+    .profile-item {
+      text-align: left;
+      margin: 15px 0;
       font-size: 1.1em;
-      margin: 10px 0;
+    }
+
+    .profile-label {
+      font-weight: 700;
+      color: #004d40;
+    }
+
+    .btn-back {
+      margin-top: 30px;
+      background-color: #004d40;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-back:hover {
+      background-color: #206c5f;
     }
   </style>
 </head>
 <body>
   <header class="navbar">
-    <h1>SDG Hub</h1>
+    <h1 class="logo">SDG Hub</h1>
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
+      <a href="importance.html">Importance</a>
+      <a href="challenges.html">Challenges</a>
+      <a href="actions.html">Actions</a>
+      <a href="resources.html">Resources</a>
+      <a href="quiz.html">Quiz</a>
       <a href="signup.html">Sign Up</a>
     </nav>
   </header>
 
   <div class="container">
-    <h2>User Profile</h2>
-    <div id="profileInfo"></div>
+    <h1>Your Profile</h1>
+    <div id="profileData">
+    </div>
+
+    <a href="index.html" class="btn-back">Back to Home</a>
   </div>
 
   <script>
-    const profileInfo = document.getElementById('profileInfo');
-    const data = JSON.parse(localStorage.getItem('signupData'));
+    const profileDataDiv = document.getElementById('profileData');
+    const storedData = localStorage.getItem('signupData');
 
-    if (data) {
-      profileInfo.innerHTML = `
-        <p><strong>Full Name:</strong> ${data.name}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Password:</strong> ${data.password}</p>
-      `;
+    if (!storedData) {
+      profileDataDiv.innerHTML = "<p>No profile data found. Please <a href='signup.html'>sign up</a> first.</p>";
     } else {
-      profileInfo.innerHTML = `<p>No profile found. Please <a href="signup.html">sign up</a>.</p>`;
+      const data = JSON.parse(storedData);
+
+      profileDataDiv.innerHTML = `
+        <div class="profile-item"><span class="profile-label">First Name:</span> ${data.firstName}</div>
+        <div class="profile-item"><span class="profile-label">Last Name:</span> ${data.lastName}</div>
+        <div class="profile-item"><span class="profile-label">Sex:</span> ${data.sex}</div>
+        <div class="profile-item"><span class="profile-label">Email:</span> ${data.email}</div>
+        <div class="profile-item"><span class="profile-label">Contact Number:</span> ${data.contactNumber ? data.contactNumber : 'N/A'}</div>
+        <div class="profile-item"><span class="profile-label">Why Support:</span> ${data.supportReason}</div>
+      `;
     }
   </script>
 </body>
