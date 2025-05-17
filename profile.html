@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Profile</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: white;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #004d40;
+      color: white;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .nav-links a {
+      color: white;
+      margin-left: 24px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: #ffdd57;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 80px auto;
+      padding: 30px;
+      background: #f4f4f4;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #143935;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <h1>SDG Hub</h1>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>User Profile</h2>
+    <div id="profileInfo"></div>
+  </div>
+
+  <script>
+    const profileInfo = document.getElementById('profileInfo');
+    const data = JSON.parse(localStorage.getItem('signupData'));
+
+    if (data) {
+      profileInfo.innerHTML = `
+        <p><strong>Full Name:</strong> ${data.name}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Password:</strong> ${data.password}</p>
+      `;
+    } else {
+      profileInfo.innerHTML = `<p>No profile found. Please <a href="signup.html">sign up</a>.</p>`;
+    }
+  </script>
+</body>
+</html>

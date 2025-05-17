@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SDG Quiz</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="extra.css"/>
+  <style>
+    .quiz-container {
+      background: #ffffff;
+      padding: 30px;
+      max-width: 800px;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .quiz-container h2 {
+      margin-bottom: 20px;
+      color: #00695c;
+    }
+
+    .question {
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+
+    #submit-btn {
+      margin-top: 20px;
+      display: block;
+    }
+
+    #score {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #00796b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1>SDG Goals</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="importance.html">Importance</a></li>
+        <li><a href="challenges.html">Challenges</a></li>
+        <li><a href="actions.html">Actions</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="quiz.html" class="active">Quiz</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="quiz-container fade-in-on-scroll">
+      <h2>Test Your Knowledge on SDGs 13, 14, and 15!</h2>
+      <form id="quizForm">
+        <div class="question">
+          <p>1. What is the main goal of SDG 13?</p>
+          <label><input type="radio" name="q1" value="a"/> Improve health care</label>
+          <label><input type="radio" name="q1" value="b"/> Promote education</label>
+          <label><input type="radio" name="q1" value="c"/> Combat climate change</label>
+        </div>
+
+        <div class="question">
+          <p>2. What does SDG 14 focus on?</p>
+          <label><input type="radio" name="q2" value="a"/> Forest conservation</label>
+          <label><input type="radio" name="q2" value="b"/> Life below water</label>
+          <label><input type="radio" name="q2" value="c"/> Urban planning</label>
+        </div>
+
+        <div class="question">
+          <p>3. Which goal emphasizes protecting terrestrial ecosystems?</p>
+          <label><input type="radio" name="q3" value="a"/> SDG 12</label>
+          <label><input type="radio" name="q3" value="b"/> SDG 15</label>
+          <label><input type="radio" name="q3" value="c"/> SDG 16</label>
+        </div>
+
+        <div class="question">
+          <p>4. What contributes most to climate change?</p>
+          <label><input type="radio" name="q4" value="a"/> Greenhouse gases</label>
+          <label><input type="radio" name="q4" value="b"/> Clean energy</label>
+          <label><input type="radio" name="q4" value="c"/> Recycling</label>
+        </div>
+
+        <div class="question">
+          <p>5. Oceans provide how much of the Earth’s oxygen?</p>
+          <label><input type="radio" name="q5" value="a"/> 10%</label>
+          <label><input type="radio" name="q5" value="b"/> 30%</label>
+          <label><input type="radio" name="q5" value="c"/> Over 50%</label>
+        </div>
+
+        <div class="question">
+          <p>6. What is a major threat to marine life?</p>
+          <label><input type="radio" name="q6" value="a"/> Deforestation</label>
+          <label><input type="radio" name="q6" value="b"/> Plastic pollution</label>
+          <label><input type="radio" name="q6" value="c"/> Solar energy</label>
+        </div>
+
+        <div class="question">
+          <p>7. What is reforestation?</p>
+          <label><input type="radio" name="q7" value="a"/> Cutting trees</label>
+          <label><input type="radio" name="q7" value="b"/> Planting trees</label>
+          <label><input type="radio" name="q7" value="c"/> Burning forests</label>
+        </div>
+
+        <div class="question">
+          <p>8. SDG 13 supports which international agreement?</p>
+          <label><input type="radio" name="q8" value="a"/> Paris Agreement</label>
+          <label><input type="radio" name="q8" value="b"/> WTO</label>
+          <label><input type="radio" name="q8" value="c"/> WHO</label>
+        </div>
+
+        <div class="question">
+          <p>9. Coral reefs are endangered due to?</p>
+          <label><input type="radio" name="q9" value="a"/> Ocean warming</label>
+          <label><input type="radio" name="q9" value="b"/> Air travel</label>
+          <label><input type="radio" name="q9" value="c"/> Overpopulation</label>
+        </div>
+
+        <div class="question">
+          <p>10. Biodiversity loss affects:</p>
+          <label><input type="radio" name="q10" value="a"/> Only animals</label>
+          <label><input type="radio" name="q10" value="b"/> Humans and ecosystems</label>
+          <label><input type="radio" name="q10" value="c"/> Only forests</label>
+        </div>
+
+        <button id="submit-btn" type="submit">Submit Answers</button>
+        <p id="score"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SDG Project. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const answers = {
+        q1: "c", q2: "b", q3: "b", q4: "a", q5: "c",
+        q6: "b", q7: "b", q8: "a", q9: "a", q10: "b"
+      };
+
+      let score = 0;
+      for (let q in answers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+
+      document.getElementById("score").textContent = `You scored ${score}/10! 🎉`;
+    });
+  </script>
+
+  <script src="extra.js"></script>
+</body>
+</html>
